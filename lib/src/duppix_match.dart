@@ -1,5 +1,3 @@
-import 'regex_engine/core.dart';
-
 /// Represents a successful match of a [DuppixRegex] pattern.
 ///
 /// Provides access to the matched text, capture groups, and named groups
@@ -37,104 +35,104 @@ class DuppixMatch {
       );
 
   /// Creates a DuppixMatch from a RegExp match (fallback mode)
-  factory DuppixMatch._fromRegExpMatch(String input, RegExpMatch match, int offset) {
-    final groups = <String?>[];
-    final namedGroups = <String, String>{};
-    final groupStarts = <int>[];
-    final groupEnds = <int>[];
-
-    // Add group 0 (entire match)
-    groups.add(match.group(0));
-    groupStarts.add(match.start + offset);
-    groupEnds.add(match.end + offset);
-
-    // Add numbered groups
-    for (int i = 1; i <= match.groupCount; i++) {
-      final groupText = match.group(i);
-      groups.add(groupText);
-
-      // Fixed: Calculate proper start/end positions for groups
-      if (groupText != null) {
-        // Try to find the group's position within the overall match
-        final groupStart = match.start + offset;
-        final groupEnd = match.end + offset;
-        groupStarts.add(groupStart);
-        groupEnds.add(groupEnd);
-      } else {
-        groupStarts.add(-1);
-        groupEnds.add(-1);
-      }
-    }
-
-    // Extract named groups (if available)
-    try {
-      final groupNames = match.groupNames;
-      for (final name in groupNames) {
-        final groupText = match.namedGroup(name);
-        if (groupText != null) {
-          namedGroups[name] = groupText;
-        }
-      }
-    } catch (_) {
-      // Named groups not supported in this Dart version
-    }
-
-    return DuppixMatch._(
-      input,
-      match.start + offset,
-      match.end + offset,
-      groups,
-      namedGroups,
-      groupStarts,
-      groupEnds,
-    );
-  }
+  // factory DuppixMatch._fromRegExpMatch(String input, RegExpMatch match, int offset) {
+  //   final groups = <String?>[];
+  //   final namedGroups = <String, String>{};
+  //   final groupStarts = <int>[];
+  //   final groupEnds = <int>[];
+  //
+  //   // Add group 0 (entire match)
+  //   groups.add(match.group(0));
+  //   groupStarts.add(match.start + offset);
+  //   groupEnds.add(match.end + offset);
+  //
+  //   // Add numbered groups
+  //   for (int i = 1; i <= match.groupCount; i++) {
+  //     final groupText = match.group(i);
+  //     groups.add(groupText);
+  //
+  //     // Fixed: Calculate proper start/end positions for groups
+  //     if (groupText != null) {
+  //       // Try to find the group's position within the overall match
+  //       final groupStart = match.start + offset;
+  //       final groupEnd = match.end + offset;
+  //       groupStarts.add(groupStart);
+  //       groupEnds.add(groupEnd);
+  //     } else {
+  //       groupStarts.add(-1);
+  //       groupEnds.add(-1);
+  //     }
+  //   }
+  //
+  //   // Extract named groups (if available)
+  //   try {
+  //     final groupNames = match.groupNames;
+  //     for (final name in groupNames) {
+  //       final groupText = match.namedGroup(name);
+  //       if (groupText != null) {
+  //         namedGroups[name] = groupText;
+  //       }
+  //     }
+  //   } catch (_) {
+  //     // Named groups not supported in this Dart version
+  //   }
+  //
+  //   return DuppixMatch._(
+  //     input,
+  //     match.start + offset,
+  //     match.end + offset,
+  //     groups,
+  //     namedGroups,
+  //     groupStarts,
+  //     groupEnds,
+  //   );
+  // }
 
   /// Creates a DuppixMatch from a custom engine MatchResult
-  factory DuppixMatch._fromMatchResult(String input, int matchStart, MatchResult result) {
-    final groups = <String?>[];
-    final namedGroups = <String, String>{};
-    final groupStarts = <int>[];
-    final groupEnds = <int>[];
-
-    // Add group 0 (entire match)
-    final fullMatchText = input.substring(matchStart, result.endPosition);
-    groups.add(fullMatchText);
-    groupStarts.add(matchStart);
-    groupEnds.add(result.endPosition);
-
-    // Add numbered groups from result
-    for (int i = 0; i < result.numberedCaptures.length; i++) {
-      final capture = result.numberedCaptures[i];
-      if (capture != null) {
-        // Ensure we have enough space in groups array
-        while (groups.length <= i + 1) {
-          groups.add(null);
-          groupStarts.add(-1);
-          groupEnds.add(-1);
-        }
-
-        groups[i + 1] = capture.text;
-        groupStarts[i + 1] = capture.start;
-        groupEnds[i + 1] = capture.end;
-      }
-    }
-
-    // Add named groups from result
-    for (final entry in result.namedCaptures.entries) {
-      namedGroups[entry.key] = entry.value.text;
-    }
-
-    return DuppixMatch._(
-      input,
-      matchStart,
-      result.endPosition,
-      groups,
-      namedGroups,
-      groupStarts,
-      groupEnds,
-    );
-  }
+  // factory DuppixMatch._fromMatchResult(String input, int matchStart, MatchResult result) {
+  //   final groups = <String?>[];
+  //   final namedGroups = <String, String>{};
+  //   final groupStarts = <int>[];
+  //   final groupEnds = <int>[];
+  //
+  //   // Add group 0 (entire match)
+  //   final fullMatchText = input.substring(matchStart, result.endPosition);
+  //   groups.add(fullMatchText);
+  //   groupStarts.add(matchStart);
+  //   groupEnds.add(result.endPosition);
+  //
+  //   // Add numbered groups from result
+  //   for (int i = 0; i < result.numberedCaptures.length; i++) {
+  //     final capture = result.numberedCaptures[i];
+  //     if (capture != null) {
+  //       // Ensure we have enough space in groups array
+  //       while (groups.length <= i + 1) {
+  //         groups.add(null);
+  //         groupStarts.add(-1);
+  //         groupEnds.add(-1);
+  //       }
+  //
+  //       groups[i + 1] = capture.text;
+  //       groupStarts[i + 1] = capture.start;
+  //       groupEnds[i + 1] = capture.end;
+  //     }
+  //   }
+  //
+  //   // Add named groups from result
+  //   for (final entry in result.namedCaptures.entries) {
+  //     namedGroups[entry.key] = entry.value.text;
+  //   }
+  //
+  //   return DuppixMatch._(
+  //     input,
+  //     matchStart,
+  //     result.endPosition,
+  //     groups,
+  //     namedGroups,
+  //     groupStarts,
+  //     groupEnds,
+  //   );
+  // }
 
   /// The matched text.
   String get group => input.substring(start, end);

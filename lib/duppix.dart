@@ -41,19 +41,19 @@ export 'src/regex_engine/quantifiers.dart' show QuantifierType;
 String getDuppixVersion() => '1.0.0';
 
 /// Options for controlling Duppix regex behavior
-const int DUPPIX_OPTION_NONE = 0;
-const int DUPPIX_OPTION_IGNORECASE = 1;
-const int DUPPIX_OPTION_MULTILINE = 2;
-const int DUPPIX_OPTION_SINGLELINE = 4;
-const int DUPPIX_OPTION_EXTEND = 8;
-const int DUPPIX_OPTION_FIND_LONGEST = 16;
-const int DUPPIX_OPTION_FIND_NOT_EMPTY = 32;
+const int kDuppixOptionNone = 0;
+const int kDuppixOptionIgnorecase = 1;
+const int kDuppixOptionMultiline = 2;
+const int kDuppixOptionSingleline = 4;
+const int kDuppixOptionExtend = 8;
+const int kDuppixOptionFindLongest = 16;
+const int kDuppixOptionFindNotEmpty = 32;
 
 // Legacy Oniguruma compatibility constants
-const int ONIG_OPTION_NONE = DUPPIX_OPTION_NONE;
-const int ONIG_OPTION_IGNORECASE = DUPPIX_OPTION_IGNORECASE;
-const int ONIG_OPTION_MULTILINE = DUPPIX_OPTION_MULTILINE;
-const int ONIG_OPTION_SINGLELINE = DUPPIX_OPTION_SINGLELINE;
-const int ONIG_OPTION_EXTEND = DUPPIX_OPTION_EXTEND;
-const int ONIG_OPTION_FIND_LONGEST = DUPPIX_OPTION_FIND_LONGEST;
-const int ONIG_OPTION_FIND_NOT_EMPTY = DUPPIX_OPTION_FIND_NOT_EMPTY;
+const int kOnigOptionNone = kDuppixOptionNone;
+const int kOnigOptionIgnorecase = kDuppixOptionIgnorecase;
+const int kOnigOptionMultiline = kDuppixOptionMultiline;
+const int kOnigOptionSingleline = kDuppixOptionSingleline;
+const int kOnigOptionExtend = kDuppixOptionExtend;
+const int kOnigOptionFindLongest = kDuppixOptionFindLongest;
+const int kOnigOptionFindNotEmpty = kDuppixOptionFindNotEmpty;

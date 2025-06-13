@@ -1,9 +1,9 @@
 name: duppix
 description: A comprehensive regex library with advanced features including possessive quantifiers, atomic groups, named backreferences, conditional patterns, and full Oniguruma compatibility.
 version: 1.0.0
-homepage: https://github.com/yourusername/duppix
-repository: https://github.com/yourusername/duppix
-issue_tracker: https://github.com/yourusername/duppix/issues
+homepage: https://github.com/IMBENJI-NET/duppix
+repository: https://github.com/IMBENJI-NET/duppix
+issue_tracker: https://github.com/IMBENJI-NET/duppix/issues
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
@@ -24,7 +24,7 @@ topics:
   - text-processing
 
 funding:
-  - https://github.com/sponsors/yourusername
+  - https://github.com/sponsors/IMBENJI-NET
 
 platforms:
   android:
