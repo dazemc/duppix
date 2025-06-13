@@ -1,0 +1,35 @@
+name: duppix
+description: A comprehensive regex library with advanced features including possessive quantifiers, atomic groups, named backreferences, conditional patterns, and full Oniguruma compatibility.
+version: 1.0.0
+homepage: https://github.com/yourusername/duppix
+repository: https://github.com/yourusername/duppix
+issue_tracker: https://github.com/yourusername/duppix/issues
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  ffi: ^2.1.0
+  path: ^1.8.3
+
+dev_dependencies:
+  test: ^1.24.0
+  lints: ^3.0.0
+
+topics:
+  - regex
+  - regular-expressions
+  - pattern-matching
+  - oniguruma
+  - text-processing
+
+funding:
+  - https://github.com/sponsors/yourusername
+
+platforms:
+  android:
+  ios:
+  linux:
+  macos:
+  web:
+  windows:
