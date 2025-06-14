@@ -635,23 +635,15 @@ class RegexParser {
 
   /// Parses start anchor (^)
   RegexNode _parseStartAnchor() {
-    throw RegexParseException.unsupportedFeature(
-      'Start anchor (^)',
-      pattern,
-      position: _position - 1,
-      suggestion: 'Use RegExp for simple anchor patterns',
-    );
+    canUseFallback = true; // Dart's RegExp supports this
+    return const StartAnchorNode();
   }
 
-  /// Parses end anchor ($)
   RegexNode _parseEndAnchor() {
-    throw RegexParseException.unsupportedFeature(
-      'End anchor (\$)',
-      pattern,
-      position: _position - 1,
-      suggestion: 'Use RegExp for simple anchor patterns',
-    );
+    canUseFallback = true; // Dart's RegExp supports this
+    return const EndAnchorNode();
   }
+
 
   /// Helper methods
   String _peek() {

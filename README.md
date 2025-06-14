@@ -285,5 +285,3 @@ MIT License - see [LICENSE](LICENSE) for details.
 ---
 
 **Made with ❤️ for the Dart community**
-
-*Duppix: Because your patterns deserve more power* 🚀

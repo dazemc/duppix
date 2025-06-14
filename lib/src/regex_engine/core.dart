@@ -296,3 +296,64 @@ class AlternationNode extends RegexNode {
     return (minOverall, maxOverall);
   }
 }
+
+class StartAnchorNode extends RegexNode {
+  const StartAnchorNode();
+
+  @override
+  String toString() => '^';
+
+  @override
+  bool canMatch(String input, int position) {
+    return position == 0;
+  }
+
+  @override
+  List<MatchResult> execute(String input, int position, MatchContext context) {
+    if (position == 0) {
+      return [
+        MatchResult(
+          endPosition: position,
+          namedCaptures: const {},
+          numberedCaptures: const [],
+          isSuccess: true,
+        ),
+      ];
+    }
+    return const [MatchResult.failed];
+  }
+
+  @override
+  (int, int) getLengthBounds() => (0, 0);
+}
+
+class EndAnchorNode extends RegexNode {
+  const EndAnchorNode();
+
+  @override
+  String toString() => r'$';
+
+  @override
+  bool canMatch(String input, int position) {
+    return position == input.length;
+  }
+
+  @override
+  List<MatchResult> execute(String input, int position, MatchContext context) {
+    if (position == input.length) {
+      return [
+        MatchResult(
+          endPosition: position,
+          namedCaptures: const {},
+          numberedCaptures: const [],
+          isSuccess: true,
+        ),
+      ];
+    }
+    return const [MatchResult.failed];
+  }
+
+  @override
+  (int, int) getLengthBounds() => (0, 0);
+}
+
