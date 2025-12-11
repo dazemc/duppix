@@ -314,6 +314,18 @@ class RegexParser {
 
       case '<':
       // Named group (?<n>...)
+        if (_position + 1 < pattern.length) {
+          final nextChar = pattern[_position + 1];
+          // Lookbehind
+          if (nextChar == '!' || nextChar == '=') {
+            _advance();
+            final isPositive = _advance() == '=';
+            canUseFallback = false;
+            final content = _parseAlternation();
+            _expectChar(')');
+            return LookbehindNode(content, positive: isPositive);
+          }
+        }
         return _parseNamedGroup();
 
       case '=':
